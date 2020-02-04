@@ -6,7 +6,7 @@ USE teste;
 -- Table contrato
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS contrato (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(45) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
@@ -16,7 +16,7 @@ ENGINE = InnoDB;
 -- Table cargo
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS cargo (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(12) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
@@ -26,7 +26,7 @@ ENGINE = InnoDB;
 -- Table usuario
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS usuario (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(80) NULL,
   email VARCHAR(80) NULL,
   cpf VARCHAR(12) NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS usuario (
   codigo_re VARCHAR(12) NULL,
   codigo_bb VARCHAR(12) NULL,
   empresa VARCHAR(25) NULL,
-  demanda INT NULL,
+  demanda VARCHAR(45) NULL,
   celular VARCHAR(25) NULL,
   nascimento DATE NULL,
   status VARCHAR(12) NULL,
@@ -60,7 +60,7 @@ ENGINE = InnoDB;
 -- Table sigla
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS sigla (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(12) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
@@ -70,7 +70,7 @@ ENGINE = InnoDB;
 -- Table perfil
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS perfil (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(12) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS usuario_X_perfil (
   status INT NOT NULL,
   dt_criacao DATE NULL,
   dt_exclusao DATE NULL,
-  id INT NOT NULL,
-  PRIMARY KEY (status, id),
+  id INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (id),
   INDEX fk_Colaborador_has_Perfil_Perfil1_idx (fk_perfil ASC) VISIBLE,
   INDEX fk_Colaborador_has_Perfil_Colaborador1_idx (fk_usuario ASC) VISIBLE,
   CONSTRAINT fk_Colaborador_has_Perfil_Colaborador1
@@ -106,7 +106,7 @@ ENGINE = InnoDB;
 -- Table situacao
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS situacao (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(20) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
@@ -116,7 +116,7 @@ ENGINE = InnoDB;
 -- Table ordem_forn
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS ordem_forn (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   numero_OF VARCHAR(12) NULL,
   numero_OF_genti VARCHAR(12) NULL,
   fabrica VARCHAR(12) NULL,
@@ -171,7 +171,7 @@ ENGINE = InnoDB;
 -- Table historico_OF
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS historico_OF (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   dt_criacao DATETIME NULL,
   fk_ordem_forn INT NULL,
   fk_usuario INT NULL,
@@ -202,7 +202,7 @@ ENGINE = InnoDB;
 -- Table migracao
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS migracao (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   dt_criacao DATETIME NULL,
   fk_usuario INT NULL,
   PRIMARY KEY (id),
