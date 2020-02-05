@@ -21,6 +21,14 @@ CREATE TABLE IF NOT EXISTS cargo (
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table sigla
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS sigla (
+  id INT NOT NULL AUTO_INCREMENT,
+  descricao VARCHAR(12) NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table usuario
@@ -40,6 +48,7 @@ CREATE TABLE IF NOT EXISTS usuario (
   status VARCHAR(12) NULL,
   fk_contrato INT NOT NULL,
   fk_cargo INT NOT NULL,
+  fk_sigla INT NULL,
   PRIMARY KEY (id),
   INDEX fk_Colaborador_Contrato1_idx (fk_contrato ASC) VISIBLE,
   INDEX fk_Usuario_Acesso1_idx (fk_cargo ASC) VISIBLE,
@@ -52,19 +61,13 @@ CREATE TABLE IF NOT EXISTS usuario (
     FOREIGN KEY (fk_cargo)
     REFERENCES cargo (id)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_Usuario_Sigla1
+    FOREIGN KEY (fk_sigla)
+    REFERENCES sigla (id)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table sigla
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS sigla (
-  id INT NOT NULL AUTO_INCREMENT,
-  descricao VARCHAR(12) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table perfil
