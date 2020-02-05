@@ -2,7 +2,7 @@
 -- Popula tabela de contratos
 INSERT INTO contrato (descricao) VALUES ('Banco do Brasil');
 
--- Popula tabela de acessos
+-- Popula tabela de cargos
 INSERT INTO cargo (descricao) VALUES ('Gestor');
 INSERT INTO cargo (descricao) VALUES ('Admin');
 INSERT INTO cargo (descricao) VALUES ('Colaborador');
@@ -45,3 +45,54 @@ INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,cel
 INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,celular,nascimento,status,fk_contrato,fk_cargo) VALUES('THIAGO VAZ DE ALMEIDA', 'thiago.vaz@resourceit.com', '00481015086', sha2('RE037108', 256), 'RE037108', 'C1233178', 'Resource', '114281', '(61) 99977-1558', '1990-03-04', 'Ativo', 1, 3);
 INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,celular,nascimento,status,fk_contrato,fk_cargo) VALUES('THIERRI SANTANA MARTINS', 'thierri.martins@resourceit.com', '06038345159', sha2('RE039399', 256), 'RE039399', 'C1311280', 'Resource', '115634', '(61)92000-3040', '1996-05-30', 'Ativo', 1, 3);
 INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,celular,nascimento,status,fk_contrato,fk_cargo) VALUES('YUJI MOTOSHIMA', 'yuji.motoshima@resourceit.com', '02636243151', sha2('RE039398', 256), 'RE039398', 'C1283755', 'Resource', '114280', '(61) 98268-0230', '1995-04-22', 'Ativo', 1, 3);
+
+
+-- Popula tabela de siglas
+
+
+INSERT INTO SIGLA(descricao) VALUES('OBR');
+INSERT INTO SIGLA(descricao) VALUES('AFO');
+INSERT INTO SIGLA(descricao) VALUES('IAT');
+INSERT INTO SIGLA(descricao) VALUES('DEB');
+INSERT INTO SIGLA(descricao) VALUES('SOL');
+INSERT INTO SIGLA(descricao) VALUES('STO');
+INSERT INTO SIGLA(descricao) VALUES('CBR');
+INSERT INTO SIGLA(descricao) VALUES('GAP');
+INSERT INTO SIGLA(descricao) VALUES('ACC');
+INSERT INTO SIGLA(descricao) VALUES('CNL');
+INSERT INTO SIGLA(descricao) VALUES('GRL');
+INSERT INTO SIGLA(descricao) VALUES('GAB');
+INSERT INTO SIGLA(descricao) VALUES('TFA');
+INSERT INTO SIGLA(descricao) VALUES('DSH');
+INSERT INTO SIGLA(descricao) VALUES('CRS');
+INSERT INTO SIGLA(descricao) VALUES('DPO');
+INSERT INTO SIGLA(descricao) VALUES('GCO');
+INSERT INTO SIGLA(descricao) VALUES('CRB');
+INSERT INTO SIGLA(descricao) VALUES('HBK');
+INSERT INTO SIGLA(descricao) VALUES('RCA');
+INSERT INTO SIGLA(descricao) VALUES('DSP');
+INSERT INTO SIGLA(descricao) VALUES('ICC');
+INSERT INTO SIGLA(descricao) VALUES('EFN');
+INSERT INTO SIGLA(descricao) VALUES('ACH');
+INSERT INTO SIGLA(descricao) VALUES('CBO');
+INSERT INTO SIGLA(descricao) VALUES('CMN');
+INSERT INTO SIGLA(descricao) VALUES('MTN');
+INSERT INTO SIGLA(descricao) VALUES('PLG');
+
+-- Popula tabela de situações
+INSERT INTO Situacao(descricao) VALUES('Conformidade Pagamento');
+INSERT INTO Situacao(descricao) VALUES('Cancelada');
+INSERT INTO Situacao(descricao) VALUES('Aceita');
+INSERT INTO Situacao(descricao) VALUES('Entregue');
+INSERT INTO Situacao(descricao) VALUES('Devolvida pela Fábrica');
+INSERT INTO Situacao(descricao) VALUES('Em Execução');
+INSERT INTO Situacao(descricao) VALUES('Entrega Validada');
+INSERT INTO Situacao(descricao) VALUES('Concluída');
+
+-- Popula tabela de Perfil
+INSERT INTO PERFIL(descricao) VALUES('Operacao');
+INSERT INTO PERFIL(descricao) VALUES('Baixa');
+INSERT INTO PERFIL(descricao) VALUES('Alta');
+INSERT INTO PERFIL(descricao) VALUES('Mobile');
+INSERT INTO PERFIL(descricao) VALUES('UX');
+

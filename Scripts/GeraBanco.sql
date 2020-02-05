@@ -17,7 +17,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS cargo (
   id INT NOT NULL AUTO_INCREMENT,
-  descricao VARCHAR(12) NULL,
+  descricao VARCHAR(20) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
@@ -107,7 +107,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS situacao (
   id INT NOT NULL AUTO_INCREMENT,
-  descricao VARCHAR(20) NULL,
+  descricao VARCHAR(45) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
