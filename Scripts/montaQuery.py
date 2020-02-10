@@ -49,7 +49,7 @@ def trataSigla(sgl):
 
 def preenche(linha, nr):
 
-    query = "INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,celular,nascimento,status,fk_contrato,fk_cargo, fk_sigla) VALUES("
+    query = "INSERT INTO USUARIO(nome,email,cpf,senha,codigo_re,codigo_bb,empresa,demanda,celular,nascimento,status,fk_contrato,fk_cargo) VALUES("
     query += "'" + linha[2].replace("'", '') + "'" + ', '
     query += "'" + linha[10] + "'" + ', '
     query += "'" + linha[4].replace('.', '').replace('-', '') + "'" + ', '
@@ -67,8 +67,8 @@ def preenche(linha, nr):
         query += "'2222-01-22',"  
 
     query += "'" + linha[6]  + "'" + ', '  
-    query +=  '1, 3 '   
-    query += trataSigla(linha[14])
+    query +=  '1, 3);'   
+
 
     rel = ''    
     if(linha[5] != ''):
@@ -78,7 +78,17 @@ def preenche(linha, nr):
         rel += "1,"
         rel += "curdate(), null);"
     
-    query += '\n' + rel
+    sig = ''
+    if(linha[14] != ''):
+        sig = "INSERT INTO usuario_x_sigla(fk_usuario, fk_sigla, status, dt_criacao, dt_exclusao) values ("
+        sig += str(nr) + ', '
+        sig += str(sigla[linha[14]]) + ', '
+        sig += '1,'
+        sig += 'curdate(), null);'
+
+
+    query += '\n' + rel + '\n' + sig
+    
     return query
 
 n_linha = 0
@@ -93,6 +103,7 @@ while(True):
 
     if(n_linha != 0):
         query = preenche(linha, n_linha)  
+
     print(query)
 
 

@@ -58,14 +58,9 @@ def trataData(dt):
     dt[2] = '20'+dt[2]
     return "'" + dt[2] + '-' + dt[0] + '-' + dt[1] + "'"
 
-def trataSit(situ):        
-    if(situ == 'Aceita'):
-        return '4,4,'
-    else:        
-        return str(sit[situ]) + ',' + 'null,'
 
 def trataSigla(sig):         
-    return str(sigla[sig]) + ', null,'
+    return str(sigla[sig]) + ', '
 
 def trataAgil(agil):
     if(agil == 'Sim'):
@@ -76,9 +71,9 @@ def trataAgil(agil):
 
 
 
-def montaQuery():
-    query = 'insert into ordem_forn (numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_situacao,fk_situacao_alm,fk_sigla,fk_usuario,responsavel_t,gerente_t) values('
-   
+def montaQuery(id):
+    query = 'insert into ordem_forn (id, numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_sigla,responsavel_t,gerente_t) values('
+    query += str(id) + ', '
     query += "'" + arr['NOF'] + "',"
     query += "'" + arr['OF'] + "',"
     query +="'" + arr['FABRICA'] + "',"
@@ -95,16 +90,20 @@ def montaQuery():
     query += trataData(arr['DT_ENTREGA']) + ","
     query += trataData(arr['DT_DEVOLVIDA']) + ","
     query += trataData(arr['DT_RECUSA']) + ","
-    query += trataData(arr['DT_ACEITE']) + ","
-    query += trataSit(arr['SITUACAO'])
+    query += trataData(arr['DT_ACEITE']) + ","    
     query += trataSigla(arr['Sistema'])
     query += "'" + arr['RT'] + "',"
     query += "'" + arr['GT'] + "');"
     
     print(query)
 
+    query = 'INSERT INTO situacao_x_of(fk_situacao, fk_of, dt_criacao, dt_exclusao, status, tipo) values('+str(sit[arr['SITUACAO']])+','+str(id)+', curdate(), null, 1, "exportacao");'
+    print(query)
+
+
 
 primeira = True
+id = 1
 while(True):
 
     try:
@@ -118,7 +117,8 @@ while(True):
         continue
     
     montaArray(linha)
-    montaQuery()
+    montaQuery(id)
+    id += 1
     
 
    
