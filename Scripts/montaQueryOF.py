@@ -72,7 +72,7 @@ def trataAgil(agil):
 
 
 def montaQuery(id):
-    query = 'insert into ordem_forn (id, numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_sigla,responsavel_t,gerente_t) values('
+    query = 'insert into ordem_forn (id, numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_sigla,responsavel_t,gerente_t, fk_situacao, fk_situacao_alm) values('
     query += str(id) + ', '
     query += "'" + arr['NOF'] + "',"
     query += "'" + arr['OF'] + "',"
@@ -93,12 +93,11 @@ def montaQuery(id):
     query += trataData(arr['DT_ACEITE']) + ","    
     query += trataSigla(arr['Sistema'])
     query += "'" + arr['RT'] + "',"
-    query += "'" + arr['GT'] + "');"
+    query += "'" + arr['GT'] + "',"
+    query += str(sit[arr['SITUACAO']]) + ', null);'
     
     print(query)
-
-    query = 'INSERT INTO situacao_x_of(fk_situacao, fk_of, dt_criacao, dt_exclusao, status, tipo) values('+str(sit[arr['SITUACAO']])+','+str(id)+', curdate(), null, 1, "exportacao");'
-    print(query)
+  
 
 
 

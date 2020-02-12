@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS cargo (
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table usuario
 -- -----------------------------------------------------
@@ -54,7 +53,6 @@ CREATE TABLE IF NOT EXISTS usuario (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table sigla
 -- -----------------------------------------------------
@@ -64,7 +62,6 @@ CREATE TABLE IF NOT EXISTS sigla (
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table perfil
 -- -----------------------------------------------------
@@ -73,7 +70,6 @@ CREATE TABLE IF NOT EXISTS perfil (
   descricao VARCHAR(12) NULL,
   PRIMARY KEY (id))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table usuario_X_perfil
@@ -100,6 +96,14 @@ CREATE TABLE IF NOT EXISTS usuario_X_perfil (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table situacao
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS situacao (
+  id INT NOT NULL AUTO_INCREMENT,
+  descricao VARCHAR(40) NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table ordem_forn
@@ -124,6 +128,8 @@ CREATE TABLE IF NOT EXISTS ordem_forn (
   dt_recusa DATETIME NULL,
   dt_aceite DATETIME NULL,
   fk_sigla INT NULL,
+  fk_situacao INT NULL,
+  fk_situacao_alm INT NULL,
   responsavel_t VARCHAR(80) NULL,
   gerente_t VARCHAR(80) NULL,
   PRIMARY KEY (id),
@@ -132,20 +138,18 @@ CREATE TABLE IF NOT EXISTS ordem_forn (
     FOREIGN KEY (fk_sigla)
     REFERENCES sigla (id)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_ordem_forn_Situacao1
+    FOREIGN KEY (fk_situacao)
+    REFERENCES situacao (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_ordem_forn_Situacao2
+    FOREIGN KEY (fk_situacao_alm)
+    REFERENCES situacao (id)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table situacao
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS situacao (
-  id INT NOT NULL AUTO_INCREMENT,
-  descricao VARCHAR(40) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table usuario_x_of
 -- -----------------------------------------------------
@@ -196,34 +200,6 @@ CREATE TABLE IF NOT EXISTS usuario_x_sigla (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table situacao_x_of
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS situacao_x_of (
-  fk_situacao INT NOT NULL,
-  fk_of INT NOT NULL,
-  id INT NOT NULL AUTO_INCREMENT,
-  dt_criacao DATETIME NULL,
-  dt_exclusao DATETIME NULL,
-  status INT NULL,
-  tipo VARCHAR(30) NULL,
-  INDEX fk_situacao_has_ordem_forn_ordem_forn1_idx (fk_of ASC) VISIBLE,
-  INDEX fk_situacao_has_ordem_forn_situacao1_idx (fk_situacao ASC) VISIBLE,
-  PRIMARY KEY (id),
-  CONSTRAINT fk_situacao_has_ordem_forn_situacao1
-    FOREIGN KEY (fk_situacao)
-    REFERENCES situacao (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_situacao_has_ordem_forn_ordem_forn1
-    FOREIGN KEY (fk_of)
-    REFERENCES ordem_forn (id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table mensagem
