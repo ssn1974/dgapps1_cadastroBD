@@ -72,7 +72,7 @@ def trataAgil(agil):
 
 
 def montaQuery(id):
-    query = 'insert into ordem_forn (id, numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_sigla,responsavel_t,gerente_t, fk_situacao, fk_situacao_alm) values('
+    query = 'insert into ordem_forn (id, numero_OF,numero_OF_genti,fabrica,tema,agil,usti_bb,uor,demanda,acao,tipo,cd_ti,dt_abertura,dt_previsao,dt_entrega,dt_devolvida,dt_recusa,dt_aceite,fk_sigla,responsavel_t,gerente_t, fk_situacao_genti, fk_situacao_usu) values('
     query += str(id) + ', '
     query += "'" + arr['NOF'] + "',"
     query += "'" + arr['OF'] + "',"

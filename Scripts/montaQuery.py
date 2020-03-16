@@ -1,11 +1,11 @@
 ar_perfil = {}
 sigla = {}
 
-ar_perfil['OperaÃ§Ã£o'] = 1
-ar_perfil['Baixa'] = 2
-ar_perfil['Alta'] = 3
-ar_perfil['Mobile'] = 4
-ar_perfil['UX'] = 5
+ar_perfil['OperaÃ§Ã£o'] = 2
+ar_perfil['Baixa'] = 1
+ar_perfil['Alta'] = 2
+ar_perfil['Mobile'] = 2
+ar_perfil['UX'] = 2
 
 sigla['OBR'] = 1
 sigla['AFO'] = 2
